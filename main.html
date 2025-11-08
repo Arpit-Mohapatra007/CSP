@@ -554,7 +554,6 @@
             return cars || [];
         }
 
-        // Display cars
         function displayCars(cars) {
             const listings = document.getElementById('car-listings');
             listings.innerHTML = '';
@@ -566,12 +565,10 @@
                 return;
             }
 
-            // Inside displayCars function, replace the car card creation with:
             cars.forEach(car => {
                 const carDiv = document.createElement('div');
                 carDiv.className = 'car-card';
 
-                // Make entire card clickable
                 carDiv.style.cursor = 'pointer';
                 carDiv.onclick = function () {
                     window.location.href = `car-detail.html?id=${car.id}`;
