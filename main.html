@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Hermez.com</title>
+    <title>HERMEZ</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -400,58 +400,247 @@
     </script>
     <script src="app.js"></script>
     <script>
-        async function fetchAndDisplayCarsByType(selectedType) {
-            console.log("Fetching cars with type:", selectedType);
+        let currentBodyType = 'SUV';
+        let filterTimeout = null;
 
-            let { data: cars, error } = await client
+        // Track which sliders have been modified by user
+        const modifiedSliders = new Set();
+
+        const fieldMapping = {
+            'year': 'year',
+            'price_usd': 'price_usd',
+            'horsepower': 'horsepower',
+            'airbags': 'number_of_airbags',
+            'cylinders': 'cylinders',
+            'displacement': 'displacement_cc',
+            'torque': 'torque_nm',
+            'fuel_tank': 'fuel_tank_liters',
+            'wheel_size': 'wheel_size_inches',
+            'brake_dist': 'braking_distance_100_to_0_meters',
+            'steering_ratio': 'steering_ratio',
+            'wheelbase': 'wheelbase_mm',
+            'ground_clearance': 'ground_clearance_mm',
+            'turning_radius': 'turning_radius_meters',
+            'curb_weight': 'curb_weight_kg',
+            'gvwr': 'gvwr_kg',
+            'towing_capacity': 'max_towing_capacity_kg',
+            'cargo_capacity': 'max_cargo_capacity_liters',
+            'acceleration': 'acceleration_0_to_60_sec',
+            'top_speed': 'top_speed_kmh',
+            'highway_mpg': 'epa_highway_mpg',
+            'city_mpg': 'epa_city_mpg',
+            'combined_mpg': 'epa_combined_mpg',
+            'co2': 'co2_emissions_g_km',
+            'pwr_weight': 'power_to_weight_ratio',
+            'fuel_eff': 'fuel_efficiency_estimate'
+        };
+
+        // Collect only ACTIVE filters (modified by user)
+        function getCurrentFilters() {
+            const filters = {
+                body_type: currentBodyType,
+                ranges: {},
+                checkboxes: {},
+                radios: {}
+            };
+
+            // Only include sliders that user has actually moved
+            for (const [htmlId, dbColumn] of Object.entries(fieldMapping)) {
+                if (modifiedSliders.has(htmlId)) {
+                    const slider = document.getElementById(htmlId);
+                    if (slider) {
+                        filters.ranges[dbColumn] = parseFloat(slider.value);
+                    }
+                }
+            }
+
+            // Checkboxes (only checked ones)
+            const checkboxGroups = {};
+            document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+                const name = cb.name;
+                const value = cb.nextSibling ? cb.nextSibling.textContent.trim() : cb.value;
+                if (!checkboxGroups[name]) checkboxGroups[name] = [];
+                checkboxGroups[name].push(value);
+            });
+            filters.checkboxes = checkboxGroups;
+
+            // Radio buttons (only checked ones)
+            document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+                const name = radio.name;
+                const value = radio.nextSibling ? radio.nextSibling.textContent.trim() : radio.value;
+                filters.radios[name] = value;
+            });
+
+            return filters;
+        }
+
+        // Build Supabase query
+        async function fetchFilteredCars() {
+            const filters = getCurrentFilters();
+            console.log('Applying filters:', filters);
+
+            let query = client
                 .from('CSP')
                 .select('*')
-                .eq('body_type', selectedType);
+                .eq('body_type', filters.body_type);
 
+            // Apply range filters (only modified sliders)
+            for (const [dbColumn, minValue] of Object.entries(filters.ranges)) {
+                query = query.gte(dbColumn, minValue);
+            }
+
+            // Apply radio button filters
+            const radioMapping = {
+                'fuel_type': 'fuel_type',
+                'aspiration': 'aspiration',
+                'transmission_type': 'transmission_type',
+                'drive_type': 'drivetrain',
+                'abs': 'abs_system',
+                'steering': 'steering_type',
+                'front_brakes': 'brakes_front'
+            };
+
+            for (const [htmlName, dbColumn] of Object.entries(radioMapping)) {
+                if (filters.radios[htmlName]) {
+                    let dbValue = filters.radios[htmlName];
+                    // Map display text to database values
+                    if (htmlName === 'fuel_type') {
+                        dbValue = dbValue === 'Diesel' ? 'Diesel' : 'Gasoline';
+                    } else if (htmlName === 'aspiration') {
+                        dbValue = dbValue === 'Turbocharged' ? 'Turbocharged' : 'Naturally Aspirated';
+                    } else if (htmlName === 'transmission_type') {
+                        dbValue = dbValue === 'Automatic' ? 'Automatic' : 'Manual';
+                    } else if (htmlName === 'drive_type') {
+                        dbValue = dbValue === 'All-Wheel Drive' ? 'All-Wheel Drive' : 'Front-Wheel Drive';
+                    } else if (htmlName === 'steering') {
+                        dbValue = dbValue === 'Electric Power Steering' ? 'Electric Power Steering' : 'Hydraulic Power Steering';
+                    }
+                    query = query.eq(dbColumn, dbValue);
+                }
+            }
+
+            // Apply checkbox filters
+            const checkboxMapping = {
+                'heated_seats': 'heated_seats',
+                'seat_material': 'seat_material',
+                'price_segment': 'price_segment',
+                'performance_tier': 'performance_tier',
+                'engine_configuration': 'engine_configuration',
+                'seating_layout': 'seating_configuration',
+                'transmission_detailed': 'transmission_detailed',
+                'tyre_size_front': 'tyre_size_front',
+                'tyre_size_rear': 'tyre_size_rear',
+                'suspension_front': 'suspension_front',
+                'suspension_rear': 'suspension_rear',
+                'brake_assist_system': 'brake_assist_system',
+                'brakes_rear': 'brakes_rear',
+                'seat_adjustments': 'seat_adjustments'
+            };
+
+            for (const [htmlName, dbColumn] of Object.entries(checkboxMapping)) {
+                if (filters.checkboxes[htmlName] && filters.checkboxes[htmlName].length > 0) {
+                    query = query.in(dbColumn, filters.checkboxes[htmlName]);
+                }
+            }
+
+            const { data: cars, error } = await query;
+
+            if (error) {
+                console.error('Query error:', error);
+                return [];
+            }
+
+            console.log(`Found ${cars.length} matching cars`);
+            return cars || [];
+        }
+
+        // Display cars
+        function displayCars(cars) {
             const listings = document.getElementById('car-listings');
             listings.innerHTML = '';
 
-            if (error) {
-                console.error("Supabase error:", error);
-                listings.innerHTML = `<p style="color: red;">Failed to load cars: ${error.message}</p>`;
+            if (cars.length === 0) {
+                listings.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                No cars match your filters. Try adjusting the criteria.
+            </p>`;
                 return;
             }
 
-            if (!cars || cars.length === 0) {
-                listings.innerHTML = `<p>No ${selectedType} cars found.</p>`;
-                return;
-            }
-
+            // Inside displayCars function, replace the car card creation with:
             cars.forEach(car => {
                 const carDiv = document.createElement('div');
                 carDiv.className = 'car-card';
+
+                // Make entire card clickable
+                carDiv.style.cursor = 'pointer';
+                carDiv.onclick = function () {
+                    window.location.href = `car-detail.html?id=${car.id}`;
+                };
 
                 const img = document.createElement('img');
                 img.src = `data-images/${car.id}.png`;
                 img.alt = `${car.make} ${car.model}`;
                 img.onerror = function () {
-                    img.src = 'images/placeholder-car.png';
+                    img.style.opacity = '0.3';
                     img.alt = "Image not available";
                 };
 
                 const nameDiv = document.createElement('div');
                 nameDiv.className = 'car-name';
-                nameDiv.textContent = car.make || 'Unknown Make';
+                nameDiv.textContent = car.make || 'Unknown';
 
                 const modelDiv = document.createElement('div');
                 modelDiv.className = 'car-model';
-                modelDiv.textContent = car.model || 'Unknown Model';
+                modelDiv.textContent = car.model || 'Model';
 
                 carDiv.appendChild(img);
                 carDiv.appendChild(nameDiv);
                 carDiv.appendChild(modelDiv);
                 listings.appendChild(carDiv);
             });
+
         }
 
-        function getQueryParam(param) {
-            let params = new URLSearchParams(window.location.search);
-            return params.get(param);
+        // Debounced filter update
+        function triggerFilterUpdate() {
+            clearTimeout(filterTimeout);
+            filterTimeout = setTimeout(async () => {
+                const cars = await fetchFilteredCars();
+                displayCars(cars);
+            }, 300);
+        }
+
+        // Setup event listeners
+        function setupFilterListeners() {
+            // Range sliders - mark as modified when user changes them
+            document.querySelectorAll('input[type="range"]').forEach(slider => {
+                slider.addEventListener('input', function () {
+                    modifiedSliders.add(this.id);
+                    triggerFilterUpdate();
+                });
+            });
+
+            // Checkboxes
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.addEventListener('change', triggerFilterUpdate);
+            });
+
+            // Radio buttons
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', triggerFilterUpdate);
+            });
+        }
+
+        // Category navigation
+        function setupCategoryNavigation() {
+            document.querySelectorAll('.header div').forEach(tab => {
+                tab.addEventListener('click', function () {
+                    const carType = this.getAttribute('data-type');
+                    if (carType) {
+                        window.location.href = `main.html?type=${encodeURIComponent(carType)}`;
+                    }
+                });
+            });
         }
 
         function updateActiveTab(selectedType) {
@@ -467,28 +656,31 @@
                 matchedTab.classList.add('active');
             }
         }
-        function setupCategoryNavigation() {
-            document.querySelectorAll('.header div').forEach(tab => {
-                tab.addEventListener('click', function () {
-                    const carType = this.getAttribute('data-type');
-                    if (carType) {
-                        window.location.href = `main.html?type=${encodeURIComponent(carType)}`;
-                    }
-                });
-            });
+
+        function getQueryParam(param) {
+            let params = new URLSearchParams(window.location.search);
+            return params.get(param);
         }
-        window.addEventListener('DOMContentLoaded', function () {
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', async function () {
             let selectedType = getQueryParam('type');
 
             if (selectedType) {
+                currentBodyType = selectedType;
                 updateActiveTab(selectedType);
-                fetchAndDisplayCarsByType(selectedType);
             } else {
-                selectedType = 'SUV';
-                window.location.href = `main.html?type=${selectedType}`;
+                currentBodyType = 'SUV';
+                window.location.href = `main.html?type=SUV`;
+                return;
             }
 
             setupCategoryNavigation();
+            setupFilterListeners();
+
+            // Initial load - show ALL cars of selected body type (no filters)
+            const cars = await fetchFilteredCars();
+            displayCars(cars);
         });
     </script>
 
