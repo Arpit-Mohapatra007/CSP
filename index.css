@@ -1,0 +1,224 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    position: relative;
+}
+
+/* Canvas layers - Fixed background */
+#backgroundCanvas,
+#starsCanvas,
+#milkyWayCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Stacking order for canvases */
+#backgroundCanvas {
+    z-index: -3;
+}
+
+#milkyWayCanvas {
+    z-index: -2;
+}
+
+#starsCanvas {
+    z-index: -1;
+}
+
+/* Header styles */
+.hermez-header {
+    position: sticky;
+    top: 0;
+    background: linear-gradient(135deg, rgba(20, 20, 50, 0.95), rgba(10, 10, 30, 0.95));
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    z-index: 100;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.hermez-header.scrolled {
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(15, 15, 40, 0.98), rgba(8, 8, 25, 0.98));
+}
+
+.hermez-logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.hermez-logo-container img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.hermez-header.scrolled .hermez-logo-container img {
+    width: 40px;
+    height: 40px;
+}
+
+.hermez-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 0.1em;
+    transition: font-size 0.3s ease;
+}
+
+.hermez-header.scrolled .hermez-title {
+    font-size: 1.8rem;
+}
+
+.hermez-domain {
+    font-size: 1.2rem;
+    color: #a1d2ff;
+    letter-spacing: 0.05em;
+}
+
+.hermez-tagline {
+    font-size: 1rem;
+    color: #ccc;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.hermez-header.scrolled .hermez-tagline {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+/* Main content */
+main {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Intro section */
+.intro {
+    background: rgba(20, 20, 50, 0.85);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    color: #fff;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.intro h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #a1d2ff;
+}
+
+.intro h4 {
+    font-size: 1.4rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: #fffaa1;
+}
+
+.intro p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #ddd;
+}
+
+.intro ul,
+.intro ol {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.intro li {
+    margin-bottom: 0.5rem;
+    color: #ddd;
+}
+
+/* Car grid section */
+.car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+.car {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.car:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+}
+
+.car img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.car h2 {
+    font-size: 1.5rem;
+    color: #222;
+    margin: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .hermez-title {
+        font-size: 2rem;
+    }
+
+    .hermez-logo-container img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .car-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .intro {
+        padding: 1.5rem;
+    }
+
+    main {
+        padding: 1rem;
+    }
+}

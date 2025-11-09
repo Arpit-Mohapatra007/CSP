@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HERMEZ</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="car-type-body">
+    <nav class="nav-bar">
+        <ul class="nav-list">
+            <li>
+                <img src="images/logo.png" alt="Hermez Logo" height="150" width="150">
+            </li>
+            <li>
+                <img src="images/hermez.png" alt="Header" height="100" width="auto">
+            </li>
+            <li class="header-container">
+                <div class="header">
+                    <div data-type="SUV">SUV</div>
+                    <div data-type="Sedan">Sedan</div>
+                    <div data-type="Hatchback">Hatchback</div>
+                    <div data-type="Wagon">Wagon</div>
+                    <div data-type="Van">Van</div>
+                    <div data-type="Crossover">Crossover</div>
+                    <div data-type="Coupe">Coupe</div>
+                    <div data-type="Convertible">Convertible</div>
+                    <div data-type="Pick-up">Pickups</div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div class="main-box">
+        <div class="form-box">
+            <div class="slider-group">
+                <label for="year">Model Year: <span id="year_val">2000</span></label><br>
+                <input type="range" id="year" min="2000" max="2017" value="2000"
+                    oninput="year_val.innerText = this.value">
+            </div>
+
+            <div class="slider-group">
+                <label for="price_usd">Price (USD): <span id="price_usd_val">5035</span></label><br>
+                <input type="range" id="price_usd" min="5035" max="495000" value="5035"
+                    oninput="price_usd_val.innerText = this.value">
+            </div>
+
+            <div class="slider-group">
+                <label for="horsepower">Horsepower: <span id="horsepower_val">5</span></label><br>
+                <input type="range" id="horsepower" min="5" max="731" value="5"
+                    oninput="horsepower_val.innerText = this.value">
+            </div>
+
+            <div class="slider-group">
+                <label for="airbags">Airbags: <span id="airbags_val">2</span></label><br>
+                <input type="range" id="airbags" min="2" max="12" value="2"
+                    oninput="airbags_val.innerText = this.value">
+            </div>
+            <div class="input-group">
+                <label>Heated seats availability</label>
+                <div class="options">
+                    <label><input type="checkbox" name="heated_seats" value="no"> No</label>
+                    <label><input type="checkbox" name="heated_seats" value="front_rear"> Yes (Front + Rear)</label>
+                    <label><input type="checkbox" name="heated_seats" value="front_only"> Yes (Front Only)</label>
+                </div>
+            </div>
+
+
+            <div class="slider-group">
+                <label for="cylinders">Cylinders: <span id="cylinders_val">4</span></label><br>
+                <input type="range" id="cylinders" min="4" max="8" value="4"
+                    oninput="cylinders_val.innerText = this.value">
+            </div>
+
+            <div class="slider-group">
+                <label for="displacement">Displacement (cc): <span id="displacement_val">72</span></label><br>
+                <input type="range" id="displacement" min="72" max="5998" value="72"
+                    oninput="displacement_val.innerText = this.value">
+            </div>
+
+            <div class="slider-group">
+                <label for="torque">Torque (Nm): <span id="torque_val">6</span></label><br>
+                <input type="range" id="torque" min="6" max="950" value="6" oninput="torque_val.innerText = this.value">
+            </div>
+
+            <div class="slider-group">
+                <label for="fuel_tank">Fuel Tank (L): <span id="fuel_tank_val">55</span></label><br>
+                <input type="range" id="fuel_tank" min="55" max="75" value="55"
+                    oninput="fuel_tank_val.innerText = this.value">
+            </div>
+
+            <div class="slider-group">
+                <label for="wheel_size">Wheel Size (in): <span id="wheel_size_val">15</span></label><br>
+                <input type="range" id="wheel_size" min="15" max="18" value="15"
+                    oninput="wheel_size_val.innerText = this.value">
+            </div>
+
+            <div class="slider-group">
+                <label for="brake_dist">Braking Distance (m): <span id="brake_dist_val">33.1</span></label><br>
+                <input type="range" id="brake_dist" min="33.1" max="38" step="0.1" value="33.1"
+                    oninput="brake_dist_val.innerText = this.value">
+            </div>
+            <div class="slider-group">
+                <label for="steering_ratio">Steering Ratio: <span id="steering_ratio_val">14.5</span></label><br>
+                <input type="range" id="steering_ratio" min="14.5" max="15.5" step="0.1" value="14.5"
+                    oninput="steering_ratio_val.innerText = this.value">
+            </div>
+
+            <div class="slider-group">
+                <label for="wheelbase">Wheelbase (mm): <span id="wheelbase_val">2400</span></label><br>
+                <input type="range" id="wheelbase" min="2400" max="2700" value="2400"
+                    oninput="wheelbase_val.innerText = this.value">
+            </div>
+
+            <div class="slider-group">
+                <label for="ground_clearance">Ground Clearance (mm): <span
+                        id="ground_clearance_val">150</span></label><br>
+                <input type="range" id="ground_clearance" min="150" max="220" value="150"
+                    oninput="ground_clearance_val.innerText = this.value">
+            </div>
+            <div class="input-group">
+                <label>Heated seats availability</label>
+                <div class="options">
+                    <label><input type="checkbox" name="heated_seats" value="no"> No</label>
+                    <label><input type="checkbox" name="heated_seats" value="front_rear"> Yes (Front + Rear)</label>
+                    <label><input type="checkbox" name="heated_seats" value="front_only"> Yes (Front Only)</label>
+                </div>
+            </div>
+
+            <div class="slider-group">
+                <label for="turning_radius">Turning Radius (m): <span id="turning_radius_val">3.6</span></label><br>
+                <input type="range" id="turning_radius" min="3.6" max="4.1" step="0.1" value="3.6"
+                    oninput="turning_radius_val.innerText = this.value">
+            </div>
+
+            <div class="slider-group">
+                <label for="curb_weight">Curb Weight (kg): <span id="curb_weight_val">1500</span></label><br>
+                <input type="range" id="curb_weight" min="1500" max="2500" value="1500"
+                    oninput="curb_weight_val.innerText = this.value">
+            </div>
+            <div class="input-group">
+                <label>Rear suspension</label>
+                <div class="options">
+                    <label><input type="checkbox" name="suspension_rear"> Independent</label>
+                    <label><input type="checkbox" name="suspension_rear"> Leaf Spring</label>
+                    <label><input type="checkbox" name="suspension_rear"> Multi-link</label>
+                    <label><input type="checkbox" name="suspension_rear"> Torsion Beam</label>
+                </div>
+            </div>
+            <div class="slider-group">
+                <label for="gvwr">GVWR (kg): <span id="gvwr_val">2100</span></label><br>
+                <input type="range" id="gvwr" min="2100" max="3500" value="2100"
+                    oninput="gvwr_val.innerText = this.value">
+            </div>
+
+            <div class="slider-group">
+                <label for="towing_capacity">Max Towing Capacity (kg): <span
+                        id="towing_capacity_val">1500</span></label><br>
+                <input type="range" id="towing_capacity" min="1500" max="3500" value="1500"
+                    oninput="towing_capacity_val.innerText = this.value">
+            </div>
+
+            <div class="slider-group">
+                <label for="cargo_capacity">Max Cargo Capacity (L): <span id="cargo_capacity_val">500</span></label><br>
+                <input type="range" id="cargo_capacity" min="500" max="1500" value="500"
+                    oninput="cargo_capacity_val.innerText = this.value">
+            </div>
+            <div class="input-group">
+                <label>Brake assist type</label>
+                <div class="options">
+                    <label><input type="checkbox" name="brake_assist_system"> ABS</label>
+                    <label><input type="checkbox" name="brake_assist_system"> ABS + EBD</label>
+                    <label><input type="checkbox" name="brake_assist_system"> ABS + EBD + Brake Assist</label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Front suspension</label>
+                <div class="options">
+                    <label><input type="checkbox" name="suspension_front"> Independent</label>
+                    <label><input type="checkbox" name="suspension_front"> Independent Double Wishbone</label>
+                    <label><input type="checkbox" name="suspension_front"> MacPherson Strut</label>
+                </div>
+            </div>
+
+            <div class="slider-group">
+                <label for="acceleration">0–60 mph Acceleration (s): <span id="acceleration_val">7.1</span></label><br>
+                <input type="range" id="acceleration" min="7.1" max="12.0" step="0.1" value="7.1"
+                    oninput="acceleration_val.innerText = this.value">
+            </div>
+
+            <div class="slider-group">
+                <label for="top_speed">Top Speed (km/h): <span id="top_speed_val">152</span></label><br>
+                <input type="range" id="top_speed" min="152" max="516" value="152"
+                    oninput="top_speed_val.innerText = this.value">
+            </div>
+
+
+            <div class="slider-group">
+                <label for="highway_mpg">EPA Highway MPG: <span id="highway_mpg_val">11.5</span></label><br>
+                <input type="range" id="highway_mpg" min="11.5" max="34.3" step="0.1" value="11.5"
+                    oninput="highway_mpg_val.innerText = this.value">
+            </div>
+
+            <div class="input-group">
+                <label>Seating layout</label>
+                <div class="options">
+                    <label><input type="checkbox" name="seating_layout" value="2"> 2 Seats (2 Front Seats)</label>
+                    <label><input type="checkbox" name="seating_layout" value="5"> 5 Seats (2 Front + 3 Rear)</label>
+                    <label><input type="checkbox" name="seating_layout" value="7"> 7 Seats (2 Front + 3 Middle + 2
+                        Rear)</label>
+                </div>
+            </div>
+
+
+            <div class="input-group">
+                <label>Fuel type</label>
+                <div class="options">
+                    <label><input type="radio" name="fuel_type" value="diesel"> Diesel</label>
+                    <label><input type="radio" name="fuel_type" value="gasoline"> Gasoline</label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Engine aspiration</label>
+                <div class="options">
+                    <label><input type="radio" name="aspiration" value="na"> Naturally Aspirated</label>
+                    <label><input type="radio" name="aspiration" value="turbo"> Turbocharged</label>
+                </div>
+            </div>
+
+
+            <div class="input-group">
+                <label>ABS availability</label>
+                <div class="options">
+                    <label><input type="radio" name="abs" value="maybe"> Maybe</label>
+                    <label><input type="radio" name="abs" value="yes"> Yes</label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Steering type</label>
+                <div class="options">
+                    <label><input type="radio" name="steering" value="eps"> Electric Power Steering</label>
+                    <label><input type="radio" name="steering" value="hps"> Hydraulic Power Steering</label>
+                </div>
+            </div>
+            <div class="slider-group">
+                <label for="city_mpg">EPA City MPG: <span id="city_mpg_val">8.5</span></label><br>
+                <input type="range" id="city_mpg" min="8.5" max="25.3" step="0.1" value="8.5"
+                    oninput="city_mpg_val.innerText = this.value">
+            </div>
+
+            <div class="slider-group">
+                <label for="combined_mpg">EPA Combined MPG: <span id="combined_mpg_val">10.0</span></label><br>
+                <input type="range" id="combined_mpg" min="10.0" max="29.8" step="0.1" value="10.0"
+                    oninput="combined_mpg_val.innerText = this.value">
+            </div>
+            <div class="input-group">
+                <label>Material of seats</label>
+                <div class="options">
+                    <label><input type="checkbox" name="seat_material"> Fabric</label>
+                    <label><input type="checkbox" name="seat_material"> Leather / Fabric Mix</label>
+                    <label><input type="checkbox" name="seat_material"> Premium Leather</label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Seat adjustment type</label>
+                <div class="options">
+                    <label><input type="checkbox" name="seat_adjustments"> Manual Adjustable</label>
+                    <label><input type="checkbox" name="seat_adjustments"> Power Adjustable (6-way)</label>
+                    <label><input type="checkbox" name="seat_adjustments"> Power Adjustable (8-way) with Memory</label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Price category</label>
+                <div class="options">
+                    <label><input type="checkbox" name="price_segment"> Budget</label>
+                    <label><input type="checkbox" name="price_segment"> Luxury</label>
+                    <label><input type="checkbox" name="price_segment"> Mid-Range</label>
+                    <label><input type="checkbox" name="price_segment"> Premium</label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Performance level</label>
+                <div class="options">
+                    <label><input type="checkbox" name="performance_tier"> Economy</label>
+                    <label><input type="checkbox" name="performance_tier"> High-Performance</label>
+                    <label><input type="checkbox" name="performance_tier"> Performance</label>
+                    <label><input type="checkbox" name="performance_tier"> Standard</label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Engine layout</label>
+                <div class="options">
+                    <label><input type="checkbox" name="engine_configuration"> I4</label>
+                    <label><input type="checkbox" name="engine_configuration"> V6</label>
+                    <label><input type="checkbox" name="engine_configuration"> V8</label>
+                </div>
+            </div>
+            <div class="slider-group">
+                <label for="co2">CO₂ Emissions (g/km): <span id="co2_val">8</span></label><br>
+                <input type="range" id="co2" min="8" max="24" value="8" oninput="co2_val.innerText = this.value">
+            </div>
+
+            <div class="slider-group">
+                <label for="pwr_weight">Power-to-Weight Ratio: <span id="pwr_weight_val">7.5</span></label><br>
+                <input type="range" id="pwr_weight" min="7.5" max="1096.5" step="0.1" value="7.5"
+                    oninput="pwr_weight_val.innerText = this.value">
+            </div>
+
+            <div class="slider-group">
+                <label for="fuel_eff">Fuel Efficiency Estimate: <span id="fuel_eff_val">-5</span></label><br>
+                <input type="range" id="fuel_eff" min="-5.0" max="25.0" step="0.1" value="-5"
+                    oninput="fuel_eff_val.innerText = this.value">
+            </div>
+
+            <div class="input-group">
+                <label>Detailed transmission</label>
+                <div class="options">
+                    <label><input type="checkbox" name="transmission_detailed"> 4-speed Manual</label>
+                    <label><input type="checkbox" name="transmission_detailed"> 5-speed Automatic</label>
+                    <label><input type="checkbox" name="transmission_detailed"> 6-speed Automatic</label>
+                    <label><input type="checkbox" name="transmission_detailed"> 8-speed Automatic</label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Front tire size</label>
+                <div class="options">
+                    <label><input type="checkbox" name="tyre_size_front"> 195/60R15</label>
+                    <label><input type="checkbox" name="tyre_size_front"> 205/65R16</label>
+                    <label><input type="checkbox" name="tyre_size_front"> 205/70R15</label>
+                    <label><input type="checkbox" name="tyre_size_front"> 225/50R18</label>
+                    <label><input type="checkbox" name="tyre_size_front"> 235/70R17</label>
+                    <label><input type="checkbox" name="tyre_size_front"> 265/75R16</label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Rear tire size</label>
+                <div class="options">
+                    <label><input type="checkbox" name="tyre_size_rear"> 195/60R15</label>
+                    <label><input type="checkbox" name="tyre_size_rear"> 205/65R16</label>
+                    <label><input type="checkbox" name="tyre_size_rear"> 205/70R15</label>
+                    <label><input type="checkbox" name="tyre_size_rear"> 225/50R18</label>
+                    <label><input type="checkbox" name="tyre_size_rear"> 235/70R17</label>
+                    <label><input type="checkbox" name="tyre_size_rear"> 265/75R16</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Transmission type</label>
+                <div class="options">
+                    <label><input type="radio" name="transmission_type" value="auto"> Automatic</label>
+                    <label><input type="radio" name="transmission_type" value="manual"> Manual</label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Drive type</label>
+                <div class="options">
+                    <label><input type="radio" name="drive_type" value="awd"> All-Wheel Drive</label>
+                    <label><input type="radio" name="drive_type" value="fwd"> Front-Wheel Drive</label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Front brakes</label>
+                <div class="options">
+                    <label><input type="radio" name="front_brakes" value="disc"> Disc Brake</label>
+                    <label><input type="radio" name="front_brakes" value="ventilated"> Ventilated Disc</label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Rear brakes</label>
+                <div class="options">
+                    <label><input type="checkbox" name="brakes_rear"> Disc Brake</label>
+                    <label><input type="checkbox" name="brakes_rear"> Drum Brake</label>
+                    <label><input type="checkbox" name="brakes_rear"> Solid Disc</label>
+                    <label><input type="checkbox" name="brakes_rear"> Ventilated Disc</label>
+                </div>
+            </div>
+
+        </div>
+        <div class="content-box">
+            <div id="car-listings"></div>
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script>
+        const SUPABASE_URL = 'https://vidszmgbdiiqbrxcncar.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZpZHN6bWdiZGlpcWJyeGNuY2FyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIwMDM4MTQsImV4cCI6MjA3NzU3OTgxNH0.45RBCrKXVQ6ghF0irZnVakScYeVj6TtDC__E1TCKlQI';
+        const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    </script>
+    <script src="app.js"></script>
+    <script>
+        let currentBodyType = 'SUV';
+        let filterTimeout = null;
+
+        // Track which sliders have been modified by user
+        const modifiedSliders = new Set();
+
+        const fieldMapping = {
+            'year': 'year',
+            'price_usd': 'price_usd',
+            'horsepower': 'horsepower',
+            'airbags': 'number_of_airbags',
+            'cylinders': 'cylinders',
+            'displacement': 'displacement_cc',
+            'torque': 'torque_nm',
+            'fuel_tank': 'fuel_tank_liters',
+            'wheel_size': 'wheel_size_inches',
+            'brake_dist': 'braking_distance_100_to_0_meters',
+            'steering_ratio': 'steering_ratio',
+            'wheelbase': 'wheelbase_mm',
+            'ground_clearance': 'ground_clearance_mm',
+            'turning_radius': 'turning_radius_meters',
+            'curb_weight': 'curb_weight_kg',
+            'gvwr': 'gvwr_kg',
+            'towing_capacity': 'max_towing_capacity_kg',
+            'cargo_capacity': 'max_cargo_capacity_liters',
+            'acceleration': 'acceleration_0_to_60_sec',
+            'top_speed': 'top_speed_kmh',
+            'highway_mpg': 'epa_highway_mpg',
+            'city_mpg': 'epa_city_mpg',
+            'combined_mpg': 'epa_combined_mpg',
+            'co2': 'co2_emissions_g_km',
+            'pwr_weight': 'power_to_weight_ratio',
+            'fuel_eff': 'fuel_efficiency_estimate'
+        };
+
+        // Collect only ACTIVE filters (modified by user)
+        function getCurrentFilters() {
+            const filters = {
+                body_type: currentBodyType,
+                ranges: {},
+                checkboxes: {},
+                radios: {}
+            };
+
+            // Only include sliders that user has actually moved
+            for (const [htmlId, dbColumn] of Object.entries(fieldMapping)) {
+                if (modifiedSliders.has(htmlId)) {
+                    const slider = document.getElementById(htmlId);
+                    if (slider) {
+                        filters.ranges[dbColumn] = parseFloat(slider.value);
+                    }
+                }
+            }
+
+            // Checkboxes (only checked ones)
+            const checkboxGroups = {};
+            document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+                const name = cb.name;
+                const value = cb.nextSibling ? cb.nextSibling.textContent.trim() : cb.value;
+                if (!checkboxGroups[name]) checkboxGroups[name] = [];
+                checkboxGroups[name].push(value);
+            });
+            filters.checkboxes = checkboxGroups;
+
+            // Radio buttons (only checked ones)
+            document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+                const name = radio.name;
+                const value = radio.nextSibling ? radio.nextSibling.textContent.trim() : radio.value;
+                filters.radios[name] = value;
+            });
+
+            return filters;
+        }
+
+        // Build Supabase query
+        async function fetchFilteredCars() {
+            const filters = getCurrentFilters();
+            console.log('Applying filters:', filters);
+
+            let query = client
+                .from('CSP')
+                .select('*')
+                .eq('body_type', filters.body_type);
+
+            // Apply range filters (only modified sliders)
+            for (const [dbColumn, minValue] of Object.entries(filters.ranges)) {
+                query = query.gte(dbColumn, minValue);
+            }
+
+            // Apply radio button filters
+            const radioMapping = {
+                'fuel_type': 'fuel_type',
+                'aspiration': 'aspiration',
+                'transmission_type': 'transmission_type',
+                'drive_type': 'drivetrain',
+                'abs': 'abs_system',
+                'steering': 'steering_type',
+                'front_brakes': 'brakes_front'
+            };
+
+            for (const [htmlName, dbColumn] of Object.entries(radioMapping)) {
+                if (filters.radios[htmlName]) {
+                    let dbValue = filters.radios[htmlName];
+                    // Map display text to database values
+                    if (htmlName === 'fuel_type') {
+                        dbValue = dbValue === 'Diesel' ? 'Diesel' : 'Gasoline';
+                    } else if (htmlName === 'aspiration') {
+                        dbValue = dbValue === 'Turbocharged' ? 'Turbocharged' : 'Naturally Aspirated';
+                    } else if (htmlName === 'transmission_type') {
+                        dbValue = dbValue === 'Automatic' ? 'Automatic' : 'Manual';
+                    } else if (htmlName === 'drive_type') {
+                        dbValue = dbValue === 'All-Wheel Drive' ? 'All-Wheel Drive' : 'Front-Wheel Drive';
+                    } else if (htmlName === 'steering') {
+                        dbValue = dbValue === 'Electric Power Steering' ? 'Electric Power Steering' : 'Hydraulic Power Steering';
+                    }
+                    query = query.eq(dbColumn, dbValue);
+                }
+            }
+
+            // Apply checkbox filters
+            const checkboxMapping = {
+                'heated_seats': 'heated_seats',
+                'seat_material': 'seat_material',
+                'price_segment': 'price_segment',
+                'performance_tier': 'performance_tier',
+                'engine_configuration': 'engine_configuration',
+                'seating_layout': 'seating_configuration',
+                'transmission_detailed': 'transmission_detailed',
+                'tyre_size_front': 'tyre_size_front',
+                'tyre_size_rear': 'tyre_size_rear',
+                'suspension_front': 'suspension_front',
+                'suspension_rear': 'suspension_rear',
+                'brake_assist_system': 'brake_assist_system',
+                'brakes_rear': 'brakes_rear',
+                'seat_adjustments': 'seat_adjustments'
+            };
+
+            for (const [htmlName, dbColumn] of Object.entries(checkboxMapping)) {
+                if (filters.checkboxes[htmlName] && filters.checkboxes[htmlName].length > 0) {
+                    query = query.in(dbColumn, filters.checkboxes[htmlName]);
+                }
+            }
+
+            const { data: cars, error } = await query;
+
+            if (error) {
+                console.error('Query error:', error);
+                return [];
+            }
+
+            console.log(`Found ${cars.length} matching cars`);
+            return cars || [];
+        }
+
+        function displayCars(cars) {
+            const listings = document.getElementById('car-listings');
+            listings.innerHTML = '';
+
+            if (cars.length === 0) {
+                listings.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                No cars match your filters. Try adjusting the criteria.
+            </p>`;
+                return;
+            }
+
+            cars.forEach(car => {
+                const carDiv = document.createElement('div');
+                carDiv.className = 'car-card';
+
+                carDiv.style.cursor = 'pointer';
+                carDiv.onclick = function () {
+                    window.location.href = `car-detail.html?id=${car.id}`;
+                };
+
+                const img = document.createElement('img');
+                img.src = `data-images/${car.id}.png`;
+                img.alt = `${car.make} ${car.model}`;
+                img.onerror = function () {
+                    img.style.opacity = '0.3';
+                    img.alt = "Image not available";
+                };
+
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'car-name';
+                nameDiv.textContent = car.make || 'Unknown';
+
+                const modelDiv = document.createElement('div');
+                modelDiv.className = 'car-model';
+                modelDiv.textContent = car.model || 'Model';
+
+                carDiv.appendChild(img);
+                carDiv.appendChild(nameDiv);
+                carDiv.appendChild(modelDiv);
+                listings.appendChild(carDiv);
+            });
+
+        }
+
+        // Debounced filter update
+        function triggerFilterUpdate() {
+            clearTimeout(filterTimeout);
+            filterTimeout = setTimeout(async () => {
+                const cars = await fetchFilteredCars();
+                displayCars(cars);
+            }, 300);
+        }
+
+        // Setup event listeners
+        function setupFilterListeners() {
+            // Range sliders - mark as modified when user changes them
+            document.querySelectorAll('input[type="range"]').forEach(slider => {
+                slider.addEventListener('input', function () {
+                    modifiedSliders.add(this.id);
+                    triggerFilterUpdate();
+                });
+            });
+
+            // Checkboxes
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.addEventListener('change', triggerFilterUpdate);
+            });
+
+            // Radio buttons
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', triggerFilterUpdate);
+            });
+        }
+
+        // Category navigation
+        function setupCategoryNavigation() {
+            document.querySelectorAll('.header div').forEach(tab => {
+                tab.addEventListener('click', function () {
+                    const carType = this.getAttribute('data-type');
+                    if (carType) {
+                        window.location.href = `main.html?type=${encodeURIComponent(carType)}`;
+                    }
+                });
+            });
+        }
+
+        function updateActiveTab(selectedType) {
+            document.querySelectorAll('.header div').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            const matchedTab = Array.from(document.querySelectorAll('.header div')).find(
+                tab => tab.getAttribute('data-type') &&
+                    tab.getAttribute('data-type').toLowerCase() === selectedType.toLowerCase()
+            );
+            if (matchedTab) {
+                matchedTab.classList.add('active');
+            }
+        }
+
+        function getQueryParam(param) {
+            let params = new URLSearchParams(window.location.search);
+            return params.get(param);
+        }
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', async function () {
+            let selectedType = getQueryParam('type');
+
+            if (selectedType) {
+                currentBodyType = selectedType;
+                updateActiveTab(selectedType);
+            } else {
+                currentBodyType = 'SUV';
+                window.location.href = `main.html?type=SUV`;
+                return;
+            }
+
+            setupCategoryNavigation();
+            setupFilterListeners();
+
+            // Initial load - show ALL cars of selected body type (no filters)
+            const cars = await fetchFilteredCars();
+            displayCars(cars);
+        });
+    </script>
+
+</body>
+
+</html>
+</body>
+
+</html>

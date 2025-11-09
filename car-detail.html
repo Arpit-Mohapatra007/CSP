@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Car Details - Hermez.com</title>
+    <link rel="stylesheet" href="car-detail.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <!-- Back button -->
+    <div class="back-button" onclick="window.history.back()">
+        ← Back to Listings
+    </div>
+
+    <div class="detail-container">
+        <!-- Left side - Car Image -->
+        <div class="image-section">
+            <img id="car-image" src="" alt="Car Image">
+            <div class="car-title">
+                <h1 id="car-name">Loading...</h1>
+                <p id="car-model"></p>
+            </div>
+        </div>
+
+        <!-- Right side - Specifications -->
+        <div class="specs-section">
+            <h2>Vehicle Specifications</h2>
+
+            <div class="spec-category">
+                <h3>Basic Information</h3>
+                <div class="spec-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Year</span>
+                        <span class="spec-value" id="year">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Price</span>
+                        <span class="spec-value" id="price">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Body Type</span>
+                        <span class="spec-value" id="body_type">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Price Segment</span>
+                        <span class="spec-value" id="price_segment">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spec-category">
+                <h3>Engine & Performance</h3>
+                <div class="spec-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Horsepower</span>
+                        <span class="spec-value" id="horsepower">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Torque</span>
+                        <span class="spec-value" id="torque">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Cylinders</span>
+                        <span class="spec-value" id="cylinders">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Displacement</span>
+                        <span class="spec-value" id="displacement">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Engine Config</span>
+                        <span class="spec-value" id="engine_config">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Fuel Type</span>
+                        <span class="spec-value" id="fuel_type">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Aspiration</span>
+                        <span class="spec-value" id="aspiration">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">0-60 mph</span>
+                        <span class="spec-value" id="acceleration">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Top Speed</span>
+                        <span class="spec-value" id="top_speed">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spec-category">
+                <h3>Transmission & Drivetrain</h3>
+                <div class="spec-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Transmission</span>
+                        <span class="spec-value" id="transmission">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Drivetrain</span>
+                        <span class="spec-value" id="drivetrain">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spec-category">
+                <h3>Fuel Economy</h3>
+                <div class="spec-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">City MPG</span>
+                        <span class="spec-value" id="city_mpg">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Highway MPG</span>
+                        <span class="spec-value" id="highway_mpg">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Combined MPG</span>
+                        <span class="spec-value" id="combined_mpg">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Fuel Tank</span>
+                        <span class="spec-value" id="fuel_tank">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spec-category">
+                <h3>Interior & Comfort</h3>
+                <div class="spec-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Seating</span>
+                        <span class="spec-value" id="seating">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Airbags</span>
+                        <span class="spec-value" id="airbags">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Seat Material</span>
+                        <span class="spec-value" id="seat_material">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Heated Seats</span>
+                        <span class="spec-value" id="heated_seats">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Cargo Capacity</span>
+                        <span class="spec-value" id="cargo">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spec-category">
+                <h3>Dimensions & Weight</h3>
+                <div class="spec-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Wheelbase</span>
+                        <span class="spec-value" id="wheelbase">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Ground Clearance</span>
+                        <span class="spec-value" id="ground_clearance">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Curb Weight</span>
+                        <span class="spec-value" id="curb_weight">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">GVWR</span>
+                        <span class="spec-value" id="gvwr">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Towing Capacity</span>
+                        <span class="spec-value" id="towing">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spec-category">
+                <h3>Wheels & Brakes</h3>
+                <div class="spec-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Wheel Size</span>
+                        <span class="spec-value" id="wheel_size">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Front Tires</span>
+                        <span class="spec-value" id="tire_front">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Rear Tires</span>
+                        <span class="spec-value" id="tire_rear">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Front Brakes</span>
+                        <span class="spec-value" id="brakes_front">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Rear Brakes</span>
+                        <span class="spec-value" id="brakes_rear">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">ABS System</span>
+                        <span class="spec-value" id="abs">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spec-category">
+                <h3>Suspension & Steering</h3>
+                <div class="spec-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Front Suspension</span>
+                        <span class="spec-value" id="suspension_front">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Rear Suspension</span>
+                        <span class="spec-value" id="suspension_rear">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Steering Type</span>
+                        <span class="spec-value" id="steering">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Turning Radius</span>
+                        <span class="spec-value" id="turning_radius">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script>
+        const SUPABASE_URL = 'https://vidszmgbdiiqbrxcncar.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZpZHN6bWdiZGlpcWJyeGNuY2FyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIwMDM4MTQsImV4cCI6MjA3NzU3OTgxNH0.45RBCrKXVQ6ghF0irZnVakScYeVj6TtDC__E1TCKlQI';
+        const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        async function loadCarDetails() {
+            const params = new URLSearchParams(window.location.search);
+            const carId = params.get('id');
+
+            if (!carId) {
+                alert('No car selected');
+                window.history.back();
+                return;
+            }
+
+            const { data: car, error } = await client
+                .from('CSP')
+                .select('*')
+                .eq('id', carId)
+                .single();
+
+            if (error || !car) {
+                alert('Car not found');
+                window.history.back();
+                return;
+            }
+
+            // Set image
+            document.getElementById('car-image').src = `data-images/${car.id}.png`;
+            document.getElementById('car-image').onerror = function () {
+                this.src = 'images/placeholder-car.png';
+            };
+
+            // Set title
+            document.getElementById('car-name').textContent = car.make || 'Unknown Make';
+            document.getElementById('car-model').textContent = car.model || 'Unknown Model';
+
+            // Populate all specs
+            document.getElementById('year').textContent = car.year || '-';
+            document.getElementById('price').textContent = car.price_usd ? `$${car.price_usd.toLocaleString()}` : '-';
+            document.getElementById('body_type').textContent = car.body_type || '-';
+            document.getElementById('price_segment').textContent = car.price_segment || '-';
+
+            document.getElementById('horsepower').textContent = car.horsepower ? `${car.horsepower} hp` : '-';
+            document.getElementById('torque').textContent = car.torque_nm ? `${car.torque_nm} Nm` : '-';
+            document.getElementById('cylinders').textContent = car.cylinders || '-';
+            document.getElementById('displacement').textContent = car.displacement_cc ? `${car.displacement_cc} cc` : '-';
+            document.getElementById('engine_config').textContent = car.engine_configuration || '-';
+            document.getElementById('fuel_type').textContent = car.fuel_type || '-';
+            document.getElementById('aspiration').textContent = car.aspiration || '-';
+            document.getElementById('acceleration').textContent = car.acceleration_0_to_60_sec ? `${car.acceleration_0_to_60_sec} sec` : '-';
+            document.getElementById('top_speed').textContent = car.top_speed_kmh ? `${car.top_speed_kmh} km/h` : '-';
+
+            document.getElementById('transmission').textContent = car.transmission_detailed || car.transmission_type || '-';
+            document.getElementById('drivetrain').textContent = car.drivetrain || '-';
+
+            document.getElementById('city_mpg').textContent = car.epa_city_mpg ? `${car.epa_city_mpg} mpg` : '-';
+            document.getElementById('highway_mpg').textContent = car.epa_highway_mpg ? `${car.epa_highway_mpg} mpg` : '-';
+            document.getElementById('combined_mpg').textContent = car.epa_combined_mpg ? `${car.epa_combined_mpg} mpg` : '-';
+            document.getElementById('fuel_tank').textContent = car.fuel_tank_liters ? `${car.fuel_tank_liters} L` : '-';
+
+            document.getElementById('seating').textContent = car.seating_configuration || '-';
+            document.getElementById('airbags').textContent = car.number_of_airbags || '-';
+            document.getElementById('seat_material').textContent = car.seat_material || '-';
+            document.getElementById('heated_seats').textContent = car.heated_seats || '-';
+            document.getElementById('cargo').textContent = car.max_cargo_capacity_liters ? `${car.max_cargo_capacity_liters} L` : '-';
+
+            document.getElementById('wheelbase').textContent = car.wheelbase_mm ? `${car.wheelbase_mm} mm` : '-';
+            document.getElementById('ground_clearance').textContent = car.ground_clearance_mm ? `${car.ground_clearance_mm} mm` : '-';
+            document.getElementById('curb_weight').textContent = car.curb_weight_kg ? `${car.curb_weight_kg} kg` : '-';
+            document.getElementById('gvwr').textContent = car.gvwr_kg ? `${car.gvwr_kg} kg` : '-';
+            document.getElementById('towing').textContent = car.max_towing_capacity_kg ? `${car.max_towing_capacity_kg} kg` : '-';
+
+            document.getElementById('wheel_size').textContent = car.wheel_size_inches ? `${car.wheel_size_inches}"` : '-';
+            document.getElementById('tire_front').textContent = car.tyre_size_front || '-';
+            document.getElementById('tire_rear').textContent = car.tyre_size_rear || '-';
+            document.getElementById('brakes_front').textContent = car.brakes_front || '-';
+            document.getElementById('brakes_rear').textContent = car.brakes_rear || '-';
+            document.getElementById('abs').textContent = car.abs_system || '-';
+
+            document.getElementById('suspension_front').textContent = car.suspension_front || '-';
+            document.getElementById('suspension_rear').textContent = car.suspension_rear || '-';
+            document.getElementById('steering').textContent = car.steering_type || '-';
+            document.getElementById('turning_radius').textContent = car.turning_radius_meters ? `${car.turning_radius_meters} m` : '-';
+
+            document.title = `${car.make} ${car.model} - Hermez`;
+        }
+
+        window.addEventListener('DOMContentLoaded', loadCarDetails);
+    </script>
+</body>
+
+</html>
