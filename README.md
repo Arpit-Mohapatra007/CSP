@@ -12,7 +12,6 @@
 2. ✨ Features
 3. 🚀 Tech Stack
 4. 🛠️ Access Hermez
-5. 🤝 Contributions
 ---
 ## 🤠 Our Purpose ?
 We, at **Hermez.com** will help you to skip dealership hassles and buy your next car easily from home. Whether _upgrading, relocating, or looking for a reliable ride_, Hermez offers a **_fast, safe, and fully digital_** car buying experience.
